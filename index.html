@@ -1,12 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Haha Yes</title>
+  <meta charset="UTF-8">
+  <title>Embedded Site</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: black;
+      height: 100%;
+      width: 100%;
+    }
+    iframe {
+      border: none;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    /* Hide cursor during video playback (simulated with timeout) */
+    body.hide-cursor {
+      cursor: none;
+    }
+  </style>
 </head>
 <body>
 
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
+  <iframe 
+    src="https://ww20.0123movie.net/" 
+    allow="fullscreen; autoplay; encrypted-media; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+
+  <script>
+    // Example of cursor hiding after inactivity
+    let timer;
+    const delay = 3000; // 3 seconds
+
+    function resetCursorTimer() {
+      document.body.classList.remove('hide-cursor');
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        document.body.classList.add('hide-cursor');
+      }, delay);
+    }
+
+    document.addEventListener('mousemove', resetCursorTimer);
+    resetCursorTimer(); // initialize on load
+  </script>
 
 </body>
 </html>
